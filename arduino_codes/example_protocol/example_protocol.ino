@@ -15,9 +15,20 @@ void loop() {
     }else if(c == 'F'){
       buffer[position] = '\0';
 
-      int i = atoi(buffer);
-      Serial.print("Recebi: ");
-      Serial.println(i + 1);
+      if(strlen(buffer) < 7){
+        Serial.println("Mensagem incorreta");
+      }else{
+        String s = String(buffer);
+
+        String s_num1 = s.substring(0,3);
+        String s_num2 = s.substring(4,7);
+
+        int num1 = s_num1.toInt();
+        int num2 = s_num2.toInt();
+
+        Serial.print("Soma :");
+        Serial.println(num1 + num2);
+      }
     }else if(position < 256){
       buffer[position] = c;
       position++;
