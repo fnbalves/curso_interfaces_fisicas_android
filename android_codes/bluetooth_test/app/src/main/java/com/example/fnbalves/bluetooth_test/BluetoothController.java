@@ -29,6 +29,16 @@ public class BluetoothController {
         myConnection.execute();
     }
 
+    public void send(String s){
+        try{
+            this.mySocket.getOutputStream().write(s.getBytes());
+        }catch(Exception ex){
+            Toast.makeText(this.parent.getApplicationContext(),
+                    "Problemas no envio",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
     BluetoothController(Activity parent){
         this.parent = parent;
 
