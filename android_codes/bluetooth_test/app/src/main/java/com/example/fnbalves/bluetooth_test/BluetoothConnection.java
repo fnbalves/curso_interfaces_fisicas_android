@@ -55,6 +55,7 @@ public class BluetoothConnection extends AsyncTask<Void, Void, Void> {
             Toast.makeText(this.myController.getParent().getApplicationContext(),
                     "Conexao feita com sucesso",
                     Toast.LENGTH_LONG).show();
+            this.myController.startListening();
         }else{
             Toast.makeText(this.myController.getParent().getApplicationContext(),
                     "Conexao falhou",

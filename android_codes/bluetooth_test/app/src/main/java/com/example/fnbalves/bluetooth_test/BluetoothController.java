@@ -15,6 +15,12 @@ public class BluetoothController {
     Activity parent;
     BluetoothAdapter myAdapter;
     BluetoothSocket mySocket;
+    BluetoothListener myListener;
+
+    public void startListening(){
+        this.myListener = new BluetoothListener(this);
+        this.myListener.start();
+    }
 
     public void setSocket(BluetoothSocket socket){
         this.mySocket = socket;
