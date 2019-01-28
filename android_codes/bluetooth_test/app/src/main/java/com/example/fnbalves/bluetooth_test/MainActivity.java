@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myController.send("A");
+                myController.send("ABCD");
             }
         });
     }

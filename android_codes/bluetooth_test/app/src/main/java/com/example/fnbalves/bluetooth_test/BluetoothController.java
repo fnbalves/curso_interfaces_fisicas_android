@@ -36,6 +36,8 @@ public class BluetoothController {
     }
 
     public void send(String s){
+        s = s + "\n";
+
         try{
             this.mySocket.getOutputStream().write(s.getBytes());
         }catch(Exception ex){

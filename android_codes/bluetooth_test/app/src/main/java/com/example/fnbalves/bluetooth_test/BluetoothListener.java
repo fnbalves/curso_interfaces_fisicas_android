@@ -26,17 +26,24 @@ public class BluetoothListener extends Thread {
     public void run(){
         byte[] buffer = new byte[256];
         int bytesRead = 0;
+        int latestPosition = 0;
 
         while(this.isRunning){
             try {
                 int bytesAvailable = this.bluetoothIn.available();
 
                 if(bytesAvailable > 0){
-                    bytesRead = this.bluetoothIn.read(buffer, 0, bytesAvailable);
-                    String readText = new String(buffer);
+                    bytesRead = this.bluetoothIn.read(buffer, latestPosition, bytesAvailable);
+                    latestPosition += bytesRead;
 
-                    this.myController.getParent().runOnUiThread(
-                            new actionToDo(this.myController,readText));
+                    String readText = new String(buffer, 0, latestPosition);
+
+                    if (readText.contains("\n")) {
+                        latestPosition = 0;
+
+                        this.myController.getParent().runOnUiThread(
+                                new actionToDo(this.myController, readText));
+                    }
                 }
             }catch(Exception ex){
 
